@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="寒露悲秋情绪自检：7道题1分钟，测完生成你的个人寒露身心卡，可保存分享。太阳走到哪，身体跟到哪。">
+<meta name="theme-color" content="#F5EFE3">
+<meta property="og:type" content="website">
+<meta property="og:title" content="寒露 · 悲秋情绪自检｜生成你的寒露身心卡">
+<meta property="og:description" content="7道题1分钟，测完生成你的个人寒露身心卡。当露水变冷，就往高处走。">
+<meta property="og:image" content="share-cover.png">
+<meta property="og:url" content="https://YOUR-DOMAIN/index.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22%3E%3Ccircle cx=%2232%22 cy=%2232%22 r=%2230%22 fill=%22%23B03A2E%22/%3E%3Ctext x=%2232%22 y=%2244%22 font-size=%2236%22 text-anchor=%22middle%22 fill=%22%23F5EFE3%22%3E%E5%AF%92%3C/text%3E%3C/svg%3E">
+<title>寒露 · 悲秋情绪自检｜生成你的寒露身心卡</title>
+<style>
+  :root{
+    --paper:#F5EFE3; --paper2:#FBF7EE; --ink:#3A3833; --gray:#8A857A;
+    --red:#B03A2E; --blue:#1F5F8B; --line:#E4DCCB;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;
+    min-height:100vh; display:flex; justify-content:center;
+  }
+  .app{width:100%;max-width:420px;min-height:100vh;position:relative;padding-bottom:32px}
+  .progress{position:sticky;top:0;z-index:9;height:4px;background:var(--line)}
+  .progress i{display:block;height:100%;width:0;background:var(--red);transition:width .25s ease}
+  .card{
+    margin:18px 16px; padding:24px 20px; background:var(--paper2);
+    border:1px solid var(--line); border-radius:18px;
+    box-shadow:0 2px 10px rgba(90,80,60,.06);
+  }
+  .kicker{font-size:12px;color:var(--gray);letter-spacing:2px;margin-bottom:8px}
+  h1{font-size:26px;font-weight:600;line-height:1.35}
+  h1 em{font-style:normal;color:var(--red)}
+  .it{color:var(--blue);font-size:13px;margin-top:6px}
+  .lead{font-size:14px;color:var(--gray);line-height:1.8;margin-top:14px}
+  .btn{
+    display:block;width:100%;margin-top:20px;padding:14px;border:none;border-radius:14px;
+    background:var(--red);color:#fff;font-size:16px;letter-spacing:1px;cursor:pointer;
+    transition:transform .22s ease, opacity .22s ease;
+  }
+  .btn:active{transform:scale(.97);opacity:.9}
+  .btn.ghost{background:transparent;color:var(--gray);border:1px solid var(--line)}
+  .hidden{display:none}
+  .fade{animation:fade .28s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .qno{font-size:12px;color:var(--gray);letter-spacing:3px}
+  .q{font-size:19px;font-weight:600;line-height:1.6;margin:10px 0 18px}
+  .opt{
+    display:flex;align-items:center;gap:10px;width:100%;text-align:left;
+    padding:13px 14px;margin-top:10px;border-radius:12px;cursor:pointer;
+    background:#fff;border:1px solid var(--line);font-size:15px;color:var(--ink);
+    transition:border-color .22s ease, background .22s ease, transform .22s ease;
+  }
+  .opt:active{transform:scale(.98)}
+  .opt.pick{border-color:var(--red);background:#FDF3F0}
+  .opt b{
+    flex:0 0 26px;height:26px;border-radius:50%;background:var(--paper);
+    display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--gray);
+  }
+  .opt.pick b{background:var(--red);color:#fff}
+  .home-row{display:flex;gap:10px;margin-top:14px}
+  .dots{display:flex;gap:6px;justify-content:center;margin-top:6px}
+  .dots i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+  .dots i.on{background:var(--red)}
+  .score-num{font-size:52px;font-weight:600;color:var(--red);line-height:1}
+  .tier{font-size:24px;font-weight:600;margin-top:6px}
+  .tier-desc{font-size:14px;color:var(--gray);line-height:1.8;margin-top:10px}
+  .rx{margin-top:16px;padding:14px;border-radius:12px;background:var(--paper);border:1px dashed var(--line)}
+  .rx h3{font-size:14px;color:var(--red);margin-bottom:8px;letter-spacing:2px}
+  .rx li{list-style:none;font-size:14px;line-height:1.9;display:flex;gap:8px}
+  .rx li:before{content:"·";color:var(--red);font-weight:700}
+  .note{font-size:12px;color:var(--gray);line-height:1.7;margin-top:14px}
+  .canvas-wrap{margin-top:16px;text-align:center}
+  .canvas-wrap canvas{width:100%;border-radius:14px;border:1px solid var(--line);box-shadow:0 2px 10px rgba(90,80,60,.08)}
+  .hint{font-size:12px;color:var(--gray);margin-top:8px}
+  .divider{height:1px;background:var(--line);margin:18px 0}
+  .hook{font-size:13px;line-height:1.9;color:var(--ink)}
+  .hook b{color:var(--red)}
+  footer{font-size:11px;color:var(--gray);text-align:center;margin-top:10px;letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="progress"><i id="bar"></i></div>
+
+  <!-- 首屏 -->
+  <section id="s0" class="card fade">
+    <div class="kicker">HANLU · RUGIADA FREDDA · 195°</div>
+    <h1>寒露 · <em>悲秋情绪自检</em></h1>
+    <div class="it">当露水变冷，就往高处走 —— Quando la rugiada si fa fredda, si cammina in alto.</div>
+    <div class="lead">
+      深秋日照变短，「悲秋」是身体对季节的真实反应，不是矫情。<br>
+      7 道题 · 约 1 分钟 · 测完生成你的<span style="color:var(--red)">个人寒露身心卡</span>（可保存）。
+    </div>
+    <div class="divider"></div>
+    <div class="lead" style="font-size:13px">
+      评分规则：每题 1–5 分，总分 7–35。<br>
+      <b style="color:var(--ink)">7–14 秋气平</b>｜<b style="color:var(--ink)">15–24 秋微凉</b>｜<b style="color:var(--ink)">25–35 秋思重</b>
+    </div>
+    <button class="btn" onclick="start()">开始自检</button>
+    <div class="note">本页为生活方式自检，不构成诊断；数据仅在你的手机上计算，不会上传。</div>
+  </section>
+
+  <!-- 答题 -->
+  <section id="s1" class="card hidden">
+    <div class="qno" id="qno"></div>
+    <div class="q" id="qt"></div>
+    <div id="opts"></div>
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- 结果 -->
+  <section id="s2" class="card hidden">
+    <div class="kicker">你的结果 · RESULT</div>
+    <div class="score-num" id="score"></div>
+    <div class="tier" id="tier"></div>
+    <div class="tier-desc" id="tdesc"></div>
+    <div class="rx">
+      <h3>寒露身心处方 · 3 分钟起步</h3>
+      <ul id="rx"></ul>
+    </div>
+    <div class="canvas-wrap">
+      <canvas id="cardCv" width="1500" height="2000"></canvas>
+      <div class="hint">↑ 你的个人寒露身心卡（长按或点下方按钮保存）</div>
+      <button class="btn" id="dl">保存身心卡</button>
+      <button class="btn ghost" onclick="location.reload()">再测一次</button>
+    </div>
+    <div class="divider"></div>
+    <div class="hook">
+      想把处方变成行动？<b>「登高护照」</b>集满 3 枚菊花章，可兑换<b>「寒露茶方签」</b>（芝麻菊花茶）一份——线下集章点见海报指引。
+    </div>
+    <div class="hint" style="text-align:center;margin-top:14px">分享给朋友，看看TA是「秋气平」还是「秋思重」</div>
+    <footer>太阳走到哪，身体跟到哪 · 寒露 2026.10.8 14:29</footer>
+  </section>
+</div>
+
+<script>
+const QS = [
+  {q:"最近两周，早晨醒来时的心情更像——", o:["一睁眼就想起床（1 分）","还算平静（2 分）","有点不想面对白天（3 分）","赖床，情绪发沉（4 分）","很难起床，心情低落（5 分）"]},
+  {q:"下午会莫名犯困、身体发沉吗？", o:["精力正常（1 分）","偶尔犯困（2 分）","午后明显乏力（3 分）","一到下午就蔫（4 分）","全天都提不起劲（5 分）"]},
+  {q:"天黑得越来越早，你会感到怅然失落吗？", o:["没有（1 分）","偶尔一丝（2 分）","常有（3 分）","几乎每天（4 分）","强烈，会影响做事（5 分）"]},
+  {q:"对平时喜欢的事，兴趣变淡了吗？", o:["和从前一样（1 分）","略淡（2 分）","明显变淡（3 分）","提不起兴趣（4 分）","完全无感（5 分）"]},
+  {q:"想不想找人说话、参加聚会？", o:["想，和平时一样（1 分）","略想宅（2 分）","明显想躲开（3 分）","回避社交（4 分）","谁都不想理（5 分）"]},
+  {q:"睡眠最近怎么样？", o:["沾枕就着（1 分）","略慢（2 分）","入睡难或多梦（3 分）","早醒难再睡（4 分）","睡眠明显变差（5 分）"]},
+  {q:"身体信号：口干、咽干、皮肤干、手脚变凉？", o:["都没有（1 分）","占一项（2 分）","占两项（3 分）","占三项（4 分）","全中且明显（5 分）"]},
+];
+const TIERS = [
+  {min:7,  max:14, name:"秋气平", desc:"身心与节气合拍，深秋对你只是风景。保持节奏，别让熬夜打破它。",
+   rx:["每天晒背 10 分钟，上午最好","一杯白露茶或菊花茶，续住润","保持一次晚间散步"]},
+  {min:15, max:24, name:"秋微凉", desc:"情绪随日照一起往下走了一点——这是多数人的深秋常态，用行动把自己「晒」回来。",
+   rx:["本周完成一次登高，3 分钟起步就出门","今晚起早睡 15 分钟，连做 7 天","一杯芝麻菊花茶，下午 3 点前喝","写一句今天的小确幸"]},
+  {min:25, max:35, name:"秋思重", desc:"深秋的情绪负荷已经偏重，先照顾自己：把下面的处方做完 7 天，并让信任的人知道你的状态。", heavy:true,
+   rx:["连续 7 天记录情绪分（本页可重测）","每天一次 3 分钟长呼气练习：吸 4 秒、呼 8 秒","和一位信任的人当面聊 10 分钟","若低落持续超过两周、明显影响生活，请考虑寻求专业心理支持——这是照顾自己，不是软弱"]},
+];
+let idx = 0, picks = [];
+
+function start(){
+  idx = 0; picks = [];
+  document.getElementById("s0").classList.add("hidden");
+  document.getElementById("s1").classList.remove("hidden");
+  document.getElementById("s1").classList.add("fade");
+  render();
+}
+function render(){
+  const q = QS[idx];
+  document.getElementById("bar").style.width = (idx/QS.length*100) + "%";
+  document.getElementById("qno").textContent = "第 " + (idx+1) + " / " + QS.length + " 题";
+  document.getElementById("qt").textContent = q.q;
+  const box = document.getElementById("opts");
+  box.innerHTML = "";
+  q.o.forEach((t,i)=>{
+    const b = document.createElement("button");
+    b.className = "opt" + (picks[idx]===i+1 ? " pick" : "");
+    b.innerHTML = "<b>"+(i+1)+"</b><span>"+t+"</span>";
+    b.onclick = ()=>{ picks[idx] = i+1; setTimeout(next, 220); render(); };
+    box.appendChild(b);
+  });
+  const dots = document.getElementById("dots");
+  dots.innerHTML = QS.map((_,i)=>`<i class="${i<=idx&&picks[i]?"on":""}"></i>`).join("");
+}
+function next(){
+  if (picks[idx] === undefined) return;
+  if (idx < QS.length-1){ idx++; render(); }
+  else result();
+}
+function result(){
+  document.getElementById("bar").style.width = "100%";
+  document.getElementById("s1").classList.add("hidden");
+  const s2 = document.getElementById("s2");
+  s2.classList.remove("hidden"); s2.classList.add("fade");
+  const score = picks.reduce((a,b)=>a+b,0);
+  const tier = TIERS.find(t=>score>=t.min && score<=t.max);
+  document.getElementById("score").textContent = score + " 分";
+  document.getElementById("tier").textContent = tier.name;
+  document.getElementById("tdesc").textContent = tier.desc;
+  document.getElementById("rx").innerHTML = tier.rx.map(x=>"<li>"+x+"</li>").join("");
+  drawCard(score, tier);
+  document.getElementById("dl").onclick = ()=>{
+    const a = document.createElement("a");
+    a.download = "寒露身心卡.png";
+    a.href = document.getElementById("cardCv").toDataURL("image/png");
+    a.click();
+  };
+}
+function drawCard(score, tier){
+  const cv = document.getElementById("cardCv"), d = cv.getContext("2d");
+  const W = 1500, H = 2000;
+  d.fillStyle = "#F5EFE3"; d.fillRect(0,0,W,H);
+  d.strokeStyle = "#E4DCCB"; d.lineWidth = 4;
+  d.strokeRect(50, 50, W-100, H-100);
+  d.strokeStyle = "#C9A227"; d.lineWidth = 3;
+  d.strokeRect(74, 74, W-148, H-148);
+  // 太阳与雁（几何剪影）
+  d.fillStyle = "#B03A2E";
+  d.beginPath(); d.arc(W-260, 300, 66, 0, 7); d.fill();
+  d.strokeStyle = "#8A857A"; d.lineWidth = 6; d.lineCap = "round";
+  [[-90,-30],[-40,-52],[20,-38]].forEach(([dx,dy])=>{
+    d.beginPath();
+    d.moveTo(W-320+dx, 210+dy); d.quadraticCurveTo(W-320+dx+35, 210+dy-26, W-320+dx+70, 210+dy);
+    d.moveTo(W-320+dx+70, 210+dy); d.quadraticCurveTo(W-320+dx+105, 210+dy-26, W-320+dx+140, 210+dy);
+    d.stroke();
+  });
+  d.fillStyle = "#3A3833";
+  d.font = "600 96px 'PingFang SC','Microsoft YaHei'";
+  d.textAlign = "center";
+  d.fillText("寒露 · 身心卡", W/2, 210);
+  d.fillStyle = "#8A857A"; d.font = "30px sans-serif";
+  d.fillText("2026.10.8 14:29 交节 · 太阳黄经 195°", W/2, 275);
+  // 分数与档位
+  d.fillStyle = "#B03A2E"; d.font = "600 220px 'PingFang SC','Microsoft YaHei'";
+  d.fillText(String(score), W/2, 560);
+  d.fillStyle = "#8A857A"; d.font = "32px sans-serif";
+  d.fillText("悲秋情绪自检 · 满分 35", W/2, 620);
+  d.fillStyle = "#3A3833"; d.font = "600 110px 'PingFang SC','Microsoft YaHei'";
+  d.fillText(tier.name, W/2, 790);
+  // 处方
+  d.font = "34px sans-serif"; d.fillStyle = "#6E6A60";
+  const lines = wrap(d, tier.desc, 56);
+  lines.forEach((l,i)=> d.fillText(l, W/2, 890 + i*52));
+  let y = 890 + lines.length*52 + 40;
+  d.fillStyle = "#B03A2E"; d.font = "600 36px sans-serif";
+  d.fillText("寒 露 身 心 处 方", W/2, y); y += 76;
+  d.fillStyle = "#3A3833"; d.font = "34px sans-serif";
+  tier.rx.forEach(r=>{
+    wrap(d, r, 46).forEach(l=>{ d.fillText(l, W/2, y); y += 56; });
+    y += 14;
+  });
+  // 底部
+  d.strokeStyle = "#C9A227"; d.lineWidth = 2;
+  d.beginPath(); d.moveTo(360, H-220); d.lineTo(W-360, H-220); d.stroke();
+  d.fillStyle = "#1F5F8B"; d.font = "30px sans-serif";
+  d.fillText("三候 鸿雁来宾 · 雀入大水为蛤 · 菊有黄华", W/2, H-150);
+  d.fillStyle = "#8A857A"; d.font = "28px sans-serif";
+  d.fillText("Rugiada Fredda · 8 ottobre 2026", W/2, H-95);
+  d.fillText("太阳走到哪，身体跟到哪", W/2, H-160+165);
+}
+function wrap(ctx, text, maxChars){
+  const out = []; let line = "";
+  for (const ch of text){
+    line += ch;
+    if (line.length >= maxChars){ out.push(line); line = ""; }
+  }
+  if (line) out.push(line);
+  return out;
+}
+</script>
+</body>
+</html>
