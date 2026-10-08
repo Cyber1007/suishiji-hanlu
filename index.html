@@ -39,6 +39,12 @@
   .follow span{font-size:12px;color:var(--gray);line-height:1.6;display:block;margin-top:2px}
   .follow .ftags{font-size:11px;color:var(--blue);margin-top:5px;letter-spacing:1px}
   .toast{position:fixed;left:50%;bottom:30px;transform:translateX(-50%);background:rgba(58,56,51,.94);color:#fff;font-size:13px;padding:10px 18px;border-radius:22px;z-index:99;opacity:0;transition:opacity .3s ease;pointer-events:none;max-width:86%;text-align:center}
+  .save-modal{position:fixed;inset:0;z-index:98;background:rgba(58,56,51,.55);display:flex;align-items:center;justify-content:center;padding:20px}
+  .save-modal.hidden{display:none}
+  .save-box{background:var(--paper2);border-radius:16px;padding:16px;max-width:94%;width:400px;text-align:center;border:1px solid var(--line);box-shadow:0 6px 24px rgba(58,56,51,.2);max-height:92vh;overflow:auto}
+  .save-box img{width:100%;border-radius:10px;border:1px solid var(--line)}
+  .save-tip{font-size:13px;color:var(--gray);margin:12px 0 14px;line-height:1.7}
+  .save-box .btn{margin-top:8px}
   .card{
     margin:18px 16px; padding:24px 20px; background:var(--paper2);
     border:1px solid var(--line); border-radius:18px;
@@ -179,6 +185,16 @@
 
 <div id="toast" class="toast"></div>
 
+<!-- 长按保存浮层（微信内核不支持直接下载，改用长按图片保存） -->
+<div id="saveModal" class="save-modal hidden" onclick="if(event.target===this)closeSaveModal()">
+  <div class="save-box">
+    <img id="saveImg" alt="你的寒露身心卡">
+    <p class="save-tip">长按上方图片 2 秒，选择「保存到手机」，即可存下你的身心卡</p>
+    <a id="saveDl" class="btn" href="#" download="寒露身心卡.png">下载原图</a>
+    <button class="btn ghost" onclick="closeSaveModal()">关闭</button>
+  </div>
+</div>
+
 <script>
 const QS = [
   {q:"最近两周，早晨醒来时的心情更像——", o:["一睁眼就想起床（1 分）","还算平静（2 分）","有点不想面对白天（3 分）","赖床，情绪发沉（4 分）","很难起床，心情低落（5 分）"]},
@@ -260,12 +276,23 @@ function result(){
   document.getElementById("tdesc").textContent = tier.desc;
   document.getElementById("rx").innerHTML = tier.rx.map(x=>"<li>"+x+"</li>").join("");
   drawCard(score, tier);
-  document.getElementById("dl").onclick = ()=>{
-    const a = document.createElement("a");
-    a.download = "寒露身心卡.png";
-    a.href = document.getElementById("cardCv").toDataURL("image/png");
-    a.click();
-  };
+  document.getElementById("dl").onclick = showSaveModal;
+}
+function showSaveModal(){
+  const cv = document.getElementById("cardCv");
+  if(!cv) return;
+  let dataUrl = "";
+  try{ dataUrl = cv.toDataURL("image/png"); }catch(e){ toast("生成图片失败，请点「再测一次」重试"); return; }
+  const img = document.getElementById("saveImg");
+  if(img) img.src = dataUrl;
+  const dl = document.getElementById("saveDl");
+  if(dl){ dl.href = dataUrl; dl.setAttribute("download", "寒露身心卡.png"); }
+  const m = document.getElementById("saveModal");
+  if(m) m.classList.remove("hidden");
+}
+function closeSaveModal(){
+  const m = document.getElementById("saveModal");
+  if(m) m.classList.add("hidden");
 }
 function drawCard(score, tier){
   const cv = document.getElementById("cardCv"), d = cv.getContext("2d");
